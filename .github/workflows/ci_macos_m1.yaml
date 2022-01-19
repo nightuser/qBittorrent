@@ -49,6 +49,7 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
             -DCMAKE_CXX_STANDARD=17 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -Ddeprecated-functions=OFF \
@@ -78,6 +79,7 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \

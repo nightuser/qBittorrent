@@ -32,7 +32,7 @@ jobs:
           mkdir -p homebrew-arm64
           cd homebrew-arm64
           curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --
-          strip 1 -C homebrew
+          mv Homebrew* homebrew
           cd homebrew/bin
           ls
           arch -arm64 ./brew update > /dev/null

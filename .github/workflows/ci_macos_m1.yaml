@@ -34,7 +34,7 @@ jobs:
         run: |
           cd openssl-universal
           ls
-          echo "openssl_root=$(pwd)/openssl-universal/macosx" >> $GITHUB_ENV
+          echo "openssl_root=$(pwd)/macosx" >> $GITHUB_ENV
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1

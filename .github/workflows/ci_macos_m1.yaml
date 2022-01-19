@@ -27,6 +27,17 @@ jobs:
             cmake ninja \
             boost openssl@1.1 zlib
 
+      - name: Install dependencies (arm64)
+        run: |
+          mkdir -p homebrew-arm64
+          cd homebrew-arm64
+          curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --
+          strip 1 -C homebrew
+          cd homebrew/bin
+          ls
+          arch -arm64 ./brew update > /dev/null
+          arch -arm64 ./brew --cache openssl@1.1
+
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:

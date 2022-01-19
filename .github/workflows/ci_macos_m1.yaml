@@ -13,9 +13,6 @@ jobs:
         qbt_gui: ["GUI=ON"]
         qt_version: ["6.2.0"]
 
-    env:
-      openssl_root: /usr/local/opt/openssl@1.1
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,16 +24,17 @@ jobs:
             cmake ninja \
             boost openssl@1.1 zlib
 
-      - name: Install dependencies (arm64)
+      - name: Fetch openssl (universal binary)
+        uses: actions/checkout@v2
+        with:
+          repository: krzyzanowskim/OpenSSL
+          path: openssl-universal
+
+      - name: Install openssl (universal binary)
         run: |
-          mkdir -p homebrew-arm64
-          cd homebrew-arm64
-          curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --
-          mv Homebrew* homebrew
-          cd homebrew/bin
+          cd openssl-universal
           ls
-          arch -arm64 ./brew update > /dev/null
-          arch -arm64 ./brew --cache openssl@1.1
+          echo "openssl_root=$(pwd)/openssl-universal/macosx" >> $GITHUB_ENV
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
